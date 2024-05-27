@@ -1,11 +1,11 @@
 <script>
 
-import { BIconPersonCircle } from "bootstrap-icons-vue";
+import { BIconPersonFill } from "bootstrap-icons-vue";
 
 export default {
     name: 'Comment',
     components: {
-        BIconPersonCircle,
+        BIconPersonFill,
     },
     props: {
         comment: {
@@ -18,12 +18,14 @@ export default {
 </script>
 
 <template>
-
-    <div class="flex gap-2 items-center p-3 bg">
-        <BIconPersonCircle class="w-5 h-5"></BIconPersonCircle>
+    
+    <div class="p-3">
+        <div class="flex gap-2 mb-2 align-bottom items-stretch">
+            <BIconPersonFill class="w-5 h-5 mt-1 text-purple-900"></BIconPersonFill>
+            <a class="font-bold text-lg" href="">{{ comment.user }}</a>
+        </div>
         <div>
-            <a class="font-bold text-xs" href="#">{{ comment.user }}</a>
-            <p class="text-sm">{{ comment.content }}</p>
+            <p class="break-words text-slate-600">{{ comment.content }}</p>
         </div>
     </div>
     

@@ -1,6 +1,7 @@
 <script>
 
 import { BIconPlusCircleFill } from "bootstrap-icons-vue";
+import { createPost } from '../services/post.js'
 
 export default {
     name: 'CreatePostButton',
@@ -10,7 +11,7 @@ export default {
     methods: {
         handleButton() {
             this.$router.push({
-                path: '/crear-post'
+                path: '/crear-publicacion'
             });
         }
     }

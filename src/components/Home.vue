@@ -2,47 +2,22 @@
 
 import Post from './Post.vue'
 import CreatePostButton from './CreatePostButton.vue'
+import PostsContainer from './PostsContainer.vue'
 import { subscribeToAuth } from '../services/auth.js'
-import { BIconPlusCircleFill } from "bootstrap-icons-vue";
+import { subscribeToPosts } from '../services/post';
 
 export default {
     name: 'Home',
     components: {
         Post,
         CreatePostButton,
-        BIconPlusCircleFill
-    },
-    data() {
-        return {
-            authUser: {
-                id: null,
-                email: null,
-            }
-        };
-    },
-    mounted() {
-        subscribeToAuth(newUserData => this.authUser = newUserData);
+        PostsContainer
     }
 }
 
 </script>
 
 <template>
-
-    <div class="pt-16">
-        <CreatePostButton></CreatePostButton>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-    </div>
-
+    <PostsContainer></PostsContainer>
+    <CreatePostButton></CreatePostButton>
 </template>
