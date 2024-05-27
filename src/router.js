@@ -4,8 +4,12 @@ import Register from './components/Register.vue'
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
 import CommentContainer from './components/CommentContainer.vue'
-
+import CreatePost from './components/CreatePost.vue'
 const routes = [
+  {
+    path: '/',
+    redirect: '/iniciar-sesion'
+  },
   {
     path: '/registro',
     name: 'Register',
@@ -20,6 +24,12 @@ const routes = [
     path: '/publicaciones',
     name: 'Home',
     component: Home,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/crear-publicacion',
+    name: 'CreatePost',
+    component: CreatePost,
     meta: { requiresAuth: true }
   },
   {
