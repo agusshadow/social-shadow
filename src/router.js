@@ -1,10 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { subscribeToAuth } from './services/auth.js'
+import { subscribeToAuth, logout } from './services/auth.js'
 import Register from './components/Register.vue'
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
 import CommentContainer from './components/CommentContainer.vue'
 import CreatePost from './components/CreatePost.vue'
+import UserProfile from './components/UserProfile.vue'
+import ChangePassword from './components/ChangePassword.vue'
+
 const routes = [
   {
     path: '/',
@@ -38,6 +41,18 @@ const routes = [
     component: CommentContainer,
     meta: { requiresAuth: true }
   },
+  {
+    path: '/perfil/:userId',
+    name: 'UserProfile',
+    component: UserProfile,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/cambiar-contraseña',
+    name: 'ChangePassword',
+    component: ChangePassword,
+    meta: { requiresAuth: true }
+  },
 ];
 
 const router = createRouter({
@@ -56,8 +71,11 @@ const isUserLogged = () => {
   return localStorage.getItem('user') !== null;
 }
 
-router.beforeEach((to, from, next) => {
-  if (authUser.id === null && to.meta.requiresAuth && !isUserLogged()) {
+router.beforeEach(async (to, from, next) => {
+  if ((to.path === '/iniciar-sesion' || to.path === '/registro') && isUserLogged()) {
+    await logout();
+    next();
+  } else if (authUser.id === null && to.meta.requiresAuth && !isUserLogged()) {
     next('/iniciar-sesion');
   } else if (to.matched.length === 0) {
     next(false);
