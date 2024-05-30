@@ -1,33 +1,36 @@
 <script>
 
+import Loader from './Loader.vue';
+import GoBack from './GoBack.vue'
 import { subscribeToAuth } from '../services/auth.js'  
 import { createPost } from '../services/post.js'
-import Loader from './Loader.vue';
 
 export default {
     name: 'CreatePost',
-    components: {
-        Loader
-    },
+    components: { Loader, GoBack },
     data() {
       return {
-        loading: false,
         authUser: {
             id: null,
             email: null,
             username: null,
         },
-        postContent: ''
+        loading: false,
+        postContent: '',
+        unsubscribeFromAuth: () => {},
       }
     },
     methods: {
       async handleSubmit() {
+        if (!this.postContent) return
         this.loading = true;
         await createPost({
-                post_by: this.authUser.id,
-                email: this.authUser.email,
-                username: this.authUser.username,
                 content: this.postContent,
+                post_by: {
+                  id: this.authUser.id,
+                  email: this.authUser.email,
+                  username: this.authUser.username,
+                },
             })
         this.loading = false;
         this.goToRegister();
@@ -39,7 +42,12 @@ export default {
       },
     },
     mounted() {
-        subscribeToAuth(newUserData => this.authUser = newUserData);
+      this.unsubscribeFromAuth = subscribeToAuth(newUserData => {
+          this.authUser = newUserData
+      });
+    },
+    unmounted() {
+        this.unsubscribeFromAuth();
     }
 };
 
@@ -47,18 +55,20 @@ export default {
 
 <template>
 
-<div class="flex items-center justify-center pt-32">
-    <form
-        @submit.prevent="handleSubmit()"
-        :class="{'opacity-20': loading, 'w-full max-w-sm p-6 rounded-lg': true}"
-    >
-      <label class="block mb-2">
-        Contenido
-        <textarea v-model="this.postContent" type="text" class="w-full p-3 mt-1 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500 h-full"/>
-      </label>
-      <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Crear</button>
-    </form>
-    <Loader v-if="loading" :message="'Creando publicacion'"/>
-  </div>
+  <section>
+    <div v-if="!loading">
+      <GoBack></GoBack>
+      <div class="flex items-center justify-center">
+        <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full max-w-sm px-6 rounded-lg': true}">
+          <label class="block mb-2 sr-only" for="content">
+            Escribe el contenido de tu publicacion
+          </label>
+          <textarea v-model="this.postContent" type="text" id="content" class="w-full h-96 p-3 mt-4 border-2 border-gray-300 rounded-md focus:outline-none focus:border-purple-700 resize-none"/>
+          <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Crear publicacion</button>
+        </form>
+      </div>
+    </div>
+    <Loader v-else :message="'Creando publicacion'"/>
+  </section>
 
 </template>  

@@ -17,17 +17,22 @@ export default {
           username: '',
           email: '',
           password: ''
-        }
+        },
+        error: false
       }
     },
     methods: {
       async handleSubmit() {
         this.loading = true;
         if (this.user.email && this.user.password) {
-            await createUser(this.user.email, this.user.password, this.user.username);
-            this.$router.push({
-                path: '/publicaciones'
-            });
+            try {
+              await createUser(this.user.email, this.user.password, this.user.username);
+              this.$router.push({
+                  path: '/publicaciones'
+              });
+            } catch (error) {
+              this.error = true;
+            }
         }
         this.loading = false;
       },
@@ -60,6 +65,7 @@ export default {
         Contraseña
         <input v-model="user.password" type="password" class="w-full p-3 mt-1 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
       </label>
+      <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales invalidas</p>
       <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Crear cuenta</button>
       <div class="text-center mt-5">
         <p>Ya tenes una cuenta? <span @click="goToLogin()" class="text-purple-700 font-bold cursor-pointer">Iniciar sesion</span></p>

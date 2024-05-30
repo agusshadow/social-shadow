@@ -44,12 +44,13 @@ export default {
 </script>
 
 <template>
-    <div v-for="post in posts">
-        <Post :post="post"></Post>
+    <div v-if="havePosts()">
+        <div v-for="post in posts">
+            <Post :post="post" :key="post.id"></Post>
+        </div>
     </div>
-    <div v-if="!havePosts()">
-        <!-- agregar un data zero aca -->
-        no hay posts
+    <div v-else>
+        <p class="mt-10 text-center text-slate-500">no hay publicaciones</p>
     </div>
     <Loader v-if="loadingPosts" :message="'Cargando publicaciones'"/>
 </template>

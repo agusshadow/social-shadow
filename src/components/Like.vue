@@ -4,13 +4,8 @@ import { BIconHeartFill, BIconHeart } from "bootstrap-icons-vue";
   
 export default {
     name: 'Like',
-    props: {
-        like: Boolean
-    },
-    components: {
-        BIconHeartFill,
-        BIconHeart
-    },
+    props: { like: Boolean },
+    components: { BIconHeartFill, BIconHeart },
 };
 
 </script>
