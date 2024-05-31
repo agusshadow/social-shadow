@@ -1,8 +1,7 @@
 <script>
 
-import { BIconGoogle } from "bootstrap-icons-vue";
-import { login } from "../services/auth.js";
 import Loader from './Loader.vue'
+import { login } from "../services/auth.js";
   
 export default {
     name: 'Login',

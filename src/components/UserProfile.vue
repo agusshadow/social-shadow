@@ -55,7 +55,7 @@ export default {
     },
     async mounted() {
         this.loading = true;
-        subscribeToAuth(newUserData => this.authUser = newUserData);
+        this.unsubscribeFromAuth = subscribeToAuth(newUserData => this.authUser = newUserData);
         this.user = await getUserProfileById(this.$route.params.userId);
         this.unsubscribeFromPosts = subscribeToPostsByUserId(this.$route.params.userId, newPosts => {
             this.posts = newPosts;
@@ -71,6 +71,7 @@ export default {
 </script>
 
 <template>
+
     <section>
         <div v-if="!loading">
             <GoBack></GoBack>
@@ -97,4 +98,5 @@ export default {
         </div>
         <Loader v-else :message="'Cargando perfil'"/>
     </section>
+    
 </template>

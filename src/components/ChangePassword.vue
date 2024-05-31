@@ -11,7 +11,7 @@ export default {
         return {
             oldPassword: '',
             newPassword: '',
-            loading: false,
+            loading: false,  
             unsubscribeFromAuth: () => {},
         };
     },
@@ -24,7 +24,7 @@ export default {
         }
     },
     async mounted() {
-        this. unsubscribeFromAuth = subscribeToAuth(newUserData => this.authUser = newUserData);
+        this.unsubscribeFromAuth = subscribeToAuth(newUserData => this.authUser = newUserData);
     },
     unmounted() {
         this.unsubscribeFromAuth();
@@ -34,6 +34,7 @@ export default {
 </script>
 
 <template>
+
     <GoBack></GoBack>
     <section class="flex items-center justify-center pt-32">
         
@@ -52,4 +53,5 @@ export default {
         </form>
         <Loader v-if="loading" :message="'Cambiando contraseña'"/>
     </section>
+    
 </template>

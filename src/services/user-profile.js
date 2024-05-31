@@ -1,8 +1,7 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase";
-import { auth } from "./firebase";
 
-export async function getUserProfileById(id) {
+export const getUserProfileById = async (id) => {
     const userRef = doc(db, `users/${id}`);
 
     try {
@@ -20,7 +19,7 @@ export async function getUserProfileById(id) {
     }
 }
 
-export async function createUserProfile(id, data) {
+export const createUserProfile = async (id, data) => {
     const userRef = doc(db, `users/${id}`);
 
     try {

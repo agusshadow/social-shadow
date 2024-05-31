@@ -1,7 +1,7 @@
 import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy, where } from "firebase/firestore";
 import { db } from "./firebase";
 
-export async function createPost(data) {
+export const createPost = async (data) => {
     const refChat = collection(db, 'posts');
 
     const doc = await addDoc(refChat, {
@@ -14,7 +14,7 @@ export async function createPost(data) {
     }
 }
 
-export function subscribeToPosts(callback) {
+export const subscribeToPosts = (callback) => {
     const refChat = collection(db, 'posts');
 
     const q = query(refChat, orderBy('created_at', 'desc'));
@@ -38,7 +38,7 @@ export function subscribeToPosts(callback) {
     });
 }
 
-export function subscribeToPostsByUserId(userId, callback) {
+export const subscribeToPostsByUserId = (userId, callback) => {
     const refChat = collection(db, 'posts');
 
     const q = query(refChat, where('post_by.id', '==', userId), orderBy('created_at', 'desc'));

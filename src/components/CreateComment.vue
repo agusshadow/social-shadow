@@ -18,6 +18,8 @@ export default {
             username: null,
         },
         loading: false,
+        commentContent: '',
+        unsubscribeFromAuth: () => {},
        }
     },
     methods: {
@@ -41,7 +43,10 @@ export default {
         },
     },
     mounted() {
-        subscribeToAuth(newUserData => this.authUser = newUserData);
+        this.unsubscribeFromAuth = subscribeToAuth(newUserData => this.authUser = newUserData);
+    },
+    unmounted() {
+        this.unsubscribeFromAuth();
     }
 }
 
@@ -50,7 +55,7 @@ export default {
 <template>
 
         <section>
-            <div v-if="!loading" class="fixed bottom-0 left-0 right-0 p-4 max-w-2xl mx-auto bg-white">
+            <div v-if="!loading" class="fixed bottom-0 left-0 right-0 p-4 md:mx-36 bg-white">
                 <form @submit.prevent="handleSubmit()">
                     <div class="flex gap-3">
                         <input 

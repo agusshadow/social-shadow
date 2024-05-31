@@ -14,6 +14,7 @@ export default {
        return {
         loading: false,
         comments: [],
+        unsubscribeFromComments: () => {},
        }
     },
     methods: {
@@ -23,10 +24,13 @@ export default {
     },
     mounted() {
         this.loading = true;
-        subscribeToComments(this.$route.params.postId, newComments => {
+        this.unsubscribeFromComments = subscribeToComments(this.$route.params.postId, newComments => {
             this.comments = newComments;
             this.loading = false;
         });
+    },
+    unmounted() {
+        this.unsubscribeFromComments();
     }
 }
 

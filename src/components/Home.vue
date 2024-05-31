@@ -12,6 +12,8 @@ export default {
 </script>
 
 <template>
+
     <PostsContainer></PostsContainer>
     <CreatePostButton></CreatePostButton>
+    
 </template>

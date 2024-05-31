@@ -49,7 +49,7 @@ export default {
     </div>
   </div>
 
-  <div class="md:w-1/2 md:px-40 mx-auto pt-20">
+  <div class="md:mx-36 pt-20">
     <router-view></router-view>
   </div>
 

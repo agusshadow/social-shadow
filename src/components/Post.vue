@@ -1,6 +1,7 @@
 <script>
-import { BIconChatSquare } from "bootstrap-icons-vue";
+
 import Like from './Like.vue';
+import { BIconChatSquare } from "bootstrap-icons-vue";
 import { subscribeToCommentsByPostId } from '../services/comment.js';
 import { formatDateUtil } from '../utils/formatDate.js'
 
@@ -17,7 +18,7 @@ export default {
         return {
             like: false,
             commentCount: 0,
-            unsubscribe: null // Guardar la función de desuscripción
+            unsubscribeFromCommentsById: () => {},
         }
     },
     methods: {
@@ -34,7 +35,7 @@ export default {
             });
         },
         fetchCommentCount(postId) {
-            this.unsubscribe = subscribeToCommentsByPostId(postId, (count) => {
+            this.unsubscribeFromCommentsById = subscribeToCommentsByPostId(postId, (count) => {
                 this.commentCount = count;
             });
         },
@@ -51,15 +52,15 @@ export default {
     mounted() {
         this.fetchCommentCount(this.post.id);
     },
-    beforeDestroy() {
-        if (this.unsubscribe) {
-            this.unsubscribe();
-        }
+    unmounted() {
+        this.unsubscribeFromCommentsById();
     }
 }
+
 </script>
 
 <template>
+
     <div class="pb-5 border-b-2">
         <div class="p-3">
             <div class="flex items-center gap-2 mb-2">
@@ -82,4 +83,5 @@ export default {
             </div>
         </div>
     </div>
+    
 </template>

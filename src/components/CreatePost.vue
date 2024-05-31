@@ -59,7 +59,7 @@ export default {
     <div v-if="!loading">
       <GoBack></GoBack>
       <div class="flex items-center justify-center">
-        <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full max-w-sm px-6 rounded-lg': true}">
+        <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full px-6 rounded-lg': true}">
           <label class="block mb-2 sr-only" for="content">
             Escribe el contenido de tu publicacion
           </label>

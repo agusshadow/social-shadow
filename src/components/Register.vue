@@ -73,4 +73,5 @@ export default {
     </form>
     <Loader v-if="loading" :message="'Creando cuenta'"/>
   </div>
+  
 </template>  
