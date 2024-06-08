@@ -1,12 +1,14 @@
 <script>
 
-import Loader from './Loader.vue'
+import Loader from '../components/Loader.vue'
+import Input from '../components/Input.vue'
 import { login } from "../services/auth.js";
   
 export default {
     name: 'Login',
     components: {
-        Loader
+        Loader,
+        Input
     },
     data() {
       return {
@@ -45,16 +47,21 @@ export default {
 
 <template>
 
-  <div class="flex items-center justify-center pt-32">
+  <div class="flex justify-center pt-16">
+    <img src="../../public/logo-nuevo.svg" alt="" class="w-20">
+  </div>
+  <div class="flex items-center justify-center">
     <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full max-w-sm p-6 rounded-lg': true}">
-      <label class="block mb-2">
-        Email
-        <input v-model="user.email" type="text" class="w-full p-3 mt-1 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-      </label>
-      <label class="block mb-2">
-        Contraseña
-        <input v-model="user.password" type="password" class="w-full p-3 mt-1 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-      </label>
+      <Input 
+        v-model="user.email"
+        label="Email"
+        type="text"
+      />
+      <Input
+        v-model="user.password"
+        label="Contraseña"
+        type="password"
+      />
       <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales invalidas</p>
       <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Iniciar Sesión</button>
       <div class="text-center mt-5">

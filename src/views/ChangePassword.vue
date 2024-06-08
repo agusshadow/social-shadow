@@ -1,7 +1,7 @@
 <script>
 
-import Loader from './Loader.vue'
-import GoBack from './GoBack.vue'
+import Loader from '../components/Loader.vue'
+import GoBack from '../components/GoBack.vue'
 import { subscribeToAuth, changePassword } from '../services/auth.js'
 
 export default {

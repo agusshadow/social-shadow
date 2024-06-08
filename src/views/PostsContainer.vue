@@ -1,7 +1,7 @@
 <script>
 
-import Post from './Post.vue'
-import Loader from './Loader.vue'
+import Post from '../components/Post.vue'
+import Loader from '../components/Loader.vue'
 import { subscribeToAuth } from '../services/auth.js'
 import { subscribeToPosts } from '../services/post';
 

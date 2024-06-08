@@ -1,9 +1,9 @@
 <script>
 
-import CreateComment from './CreateComment.vue';
-import Comment from './Comment.vue';
-import Loader from './Loader.vue';
-import GoBack from './GoBack.vue'
+import CreateComment from '../components/CreateComment.vue';
+import Comment from '../components/Comment.vue';
+import Loader from '../components/Loader.vue';
+import GoBack from '../components/GoBack.vue'
 import { subscribeToComments } from '../services/comment.js'
 
 

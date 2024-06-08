@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { subscribeToAuth, logout } from './services/auth.js'
-import Register from './components/Register.vue'
-import Login from './components/Login.vue'
-import Home from './components/Home.vue'
-import CommentContainer from './components/CommentContainer.vue'
-import CreatePost from './components/CreatePost.vue'
-import UserProfile from './components/UserProfile.vue'
-import ChangePassword from './components/ChangePassword.vue'
+import Register from './views/Register.vue'
+import Login from './views/Login.vue'
+import Home from './views/Home.vue'
+import CommentContainer from './views/CommentContainer.vue'
+import CreatePost from './views/CreatePost.vue'
+import UserProfile from './views/UserProfile.vue'
+import ChangePassword from './views/ChangePassword.vue'
 
 const routes = [
   {

@@ -2,7 +2,7 @@
 
 import { BIconGoogle } from "bootstrap-icons-vue";
 import { createUser } from "../services/auth.js";
-import Loader from './Loader.vue'
+import Loader from '../components/Loader.vue'
   
 export default {
     name: 'Register',

@@ -1,7 +1,7 @@
 <script>
 
-import Loader from './Loader.vue';
-import GoBack from './GoBack.vue'
+import Loader from '../components/Loader.vue';
+import GoBack from '../components/GoBack.vue'
 import { subscribeToAuth } from '../services/auth.js'  
 import { createPost } from '../services/post.js'
 
@@ -58,7 +58,10 @@ export default {
   <section>
     <div v-if="!loading">
       <GoBack></GoBack>
+      <h2>Crea una nueva publicacion</h2>
+      <p>Escribe el contenido de tu publicacion y luego da click en crear</p>
       <div class="flex items-center justify-center">
+        
         <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full px-6 rounded-lg': true}">
           <label class="block mb-2 sr-only" for="content">
             Escribe el contenido de tu publicacion
