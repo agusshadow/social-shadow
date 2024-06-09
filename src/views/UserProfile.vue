@@ -3,16 +3,15 @@
 import Loader from '../components/Loader.vue'
 import Post from '../components/Post.vue'
 import GoBack from '../components/GoBack.vue'
+import Avatar from '../components/Avatar.vue'
 import { subscribeToAuth, logout } from '../services/auth.js'
 import { subscribeToPostsByUserId } from '../services/post.js'
 import { formatDateUtil } from '../utils/formatDate.js'
 import { getUserProfileById } from '../services/user-profile.js'
-import { BIconPersonCircle } from 'bootstrap-icons-vue';
-
 
 export default {
     name: 'UserProfile',
-    components: { Loader, Post, GoBack, BIconPersonCircle },
+    components: { Loader, Post, GoBack, Avatar },
     data() {
         return {
             authUser: {
@@ -76,8 +75,7 @@ export default {
     <section>
         <div  v-if="!loading" class="flex flex-col items-center justify-center gap-8 p-6 md:p-10">
           <div class="flex flex-col items-center gap-4">
-            <img src="../../public/logo-cara-1.jpeg" alt="@shadcn" class="w-20 h-20 rounded-full"/>
-            <!-- <BIconPersonCircle class="w-20 h-20 rounded-full text-gray-500"></BIconPersonCircle> -->
+            <Avatar :src="''" :alt="user.name" :width="8" :height="8"/>
             <div class="grid gap-1 text-center">
               <h2 class="text-2xl font-bold">{{ user.username }}</h2>
               <p class="text-gray-500 dark:text-gray-400">{{ user.email }}</p>

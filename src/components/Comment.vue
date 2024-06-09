@@ -1,11 +1,11 @@
 <script>
 
-import { BIconPersonFill } from "bootstrap-icons-vue";
+import Avatar from './Avatar.vue'
 import { formatDateUtil } from '../utils/formatDate.js'
 
 export default {
     name: 'Comment',
-    components: { BIconPersonFill },
+    components: { Avatar },
     props: { comment: Object },
     methods: {
         formatDate(date) {
@@ -20,7 +20,7 @@ export default {
     
     <div class="p-3">
         <div class="flex gap-2 mb-2 align-bottom items-stretch">
-            <BIconPersonFill class="w-5 h-5 mt-1 text-purple-900"></BIconPersonFill>
+            <Avatar :src="''" :alt="comment.comment_by.username" :width="6" :height="6"/>
             <a class="font-bold text-lg" href="">{{ comment.comment_by.username }}</a>
         </div>
         <p class="break-words text-slate-600">{{ comment.content }}</p>

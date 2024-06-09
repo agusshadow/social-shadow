@@ -1,11 +1,11 @@
 <script>
 
-import { BIconPersonFill } from "bootstrap-icons-vue";
 import { subscribeToAuth } from './services/auth.js'
+import Avatar from './components/Avatar.vue'
 
 export default {
   name: 'App',
-  components: { BIconPersonFill },
+  components: { Avatar },
   data() {
         return {
             authUser: {
@@ -39,12 +39,11 @@ export default {
 
 <template>
 
-  <div class="bg-slate-50 fixed top-0 w-full py-5 px-3">
+  <div class="bg-slate-50 fixed top-0 w-full py-5 px-3 z-10">
     <div class="flex justify-between items-center">
-      <img @click="goToHome()" src="../public/logo.svg" alt="" class="w-16">
-      <div v-if="authUser.id" class="flex gap-1 items-center bg-purple-700 text-white px-2 py-1 rounded-md cursor-pointer">
-        <BIconPersonFill></BIconPersonFill>
-        <span @click="goToProfile()">{{ authUser?.username }}</span>
+      <img @click="goToHome()" src="../public/logo-nuevo.svg" alt="" class="w-8 cursor-pointer">
+      <div v-if="authUser.id" @click="goToProfile()" class="cursor-pointer">
+        <Avatar :src="''" :alt="authUser.username" :width="6" :height="6"/>
       </div>
     </div>
   </div>

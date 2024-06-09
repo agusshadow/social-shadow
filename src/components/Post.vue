@@ -1,17 +1,17 @@
 <script>
 
 import Like from './Like.vue';
+import Avatar from './Avatar.vue'
 import { BIconChatSquare } from "bootstrap-icons-vue";
 import { subscribeToCommentsByPostId } from '../services/comment.js';
 import { formatDateUtil } from '../utils/formatDate.js'
-import { BIconPersonCircle } from 'bootstrap-icons-vue';
 
 export default {
     name: 'Post',
     components: {
         BIconChatSquare,
         Like,
-        BIconPersonCircle
+        Avatar
     },
     props: {
         post: Object
@@ -66,9 +66,7 @@ export default {
     <div className="bg-white rounded-lg p-2">
         <div className="flex items-start">
           <div className="mr-4">
-            <!-- esto pasarlo a un componente -->
-            <img src="../../public/logo-cara-1.jpeg" alt="@shadcn" class="w-8 h-8 rounded-full"/>
-           <!--  <BIconPersonCircle class="w-8 h-8 rounded-full text-gray-500"></BIconPersonCircle> -->
+            <Avatar :src="''" :alt="post.post_by?.username" :width="6" :height="6"/>
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between">
