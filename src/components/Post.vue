@@ -63,7 +63,7 @@ export default {
 
 <template>
 
-    <div className="bg-white rounded-lg p-2">
+    <div className="rounded-lg mx-2 my-4">
         <div className="flex items-start">
           <div className="mr-4">
             <Avatar :src="''" :alt="post.post_by?.username" :width="6" :height="6"/>
