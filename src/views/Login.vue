@@ -2,13 +2,15 @@
 
 import Loader from '../components/Loader.vue'
 import Input from '../components/Input.vue'
+import Button from '../components/Button.vue'
 import { login } from "../services/auth.js";
   
 export default {
     name: 'Login',
     components: {
         Loader,
-        Input
+        Input,
+        Button
     },
     data() {
       return {
@@ -63,7 +65,7 @@ export default {
         type="password"
       />
       <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales invalidas</p>
-      <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Iniciar Sesión</button>
+      <Button :type="submit" :buttonType="'primary'">Iniciar sesion</Button>
       <div class="text-center mt-5">
       <p>No tenes una cuenta? <span @click="goToRegister()" class="text-purple-700 font-bold cursor-pointer">Crea una</span></p>
       </div>

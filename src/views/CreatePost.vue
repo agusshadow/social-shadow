@@ -2,12 +2,13 @@
 
 import Loader from '../components/Loader.vue';
 import GoBack from '../components/GoBack.vue'
+import Button from '../components/Button.vue';
 import { subscribeToAuth } from '../services/auth.js'  
 import { createPost } from '../services/post.js'
 
 export default {
     name: 'CreatePost',
-    components: { Loader, GoBack },
+    components: { Loader, GoBack, Button },
     data() {
       return {
         authUser: {
@@ -67,7 +68,7 @@ export default {
             Escribe el contenido de tu publicacion
           </label>
           <textarea v-model="this.postContent" type="text" id="content" class="w-full h-96 p-3 mt-4 border-2 border-gray-300 rounded-md focus:outline-none focus:border-purple-700 resize-none"/>
-          <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Crear publicacion</button>
+          <Button :type="submit" :buttonType="'primary'">Crear publicacion</Button>
         </form>
       </div>
     </div>

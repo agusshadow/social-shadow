@@ -2,11 +2,13 @@
 
 import Loader from '../components/Loader.vue'
 import GoBack from '../components/GoBack.vue'
+import Input from '../components/Input.vue';
+import Button from '../components/Button.vue';
 import { subscribeToAuth, changePassword } from '../services/auth.js'
 
 export default {
     name: 'ChangePassword',
-    components: { Loader, GoBack },
+    components: { Loader, GoBack, Input, Button },
     data() {
         return {
             oldPassword: '',
@@ -37,19 +39,18 @@ export default {
 
     <GoBack></GoBack>
     <section class="flex items-center justify-center pt-32">
-        
         <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full max-w-sm p-6 rounded-lg': true}">
-          <label class="block mb-2">
-            Contraseña anterior
-            <input v-model="oldPassword" type="text" class="w-full p-3 mt-1 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-          </label>
-          <label class="block mb-2">
-            Contraseña nueva
-            <input v-model="newPassword" type="text" class="w-full p-3 mt-1 border-2 border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-          </label>
-          <button type="submit" class="w-full py-3 mt-4 text-white font-bold bg-purple-700 rounded-md hover:bg-purple-800 focus:outline-none focus:bg-purple-900">Cambiar contraseña</button>
-          <div class="text-center mt-5">
-          </div>
+            <Input 
+                v-model="oldPassword"
+                label="Contraseña anterior"
+                type="text"
+            />
+            <Input 
+                v-model="newPassword"
+                label="Contraseña nueva"
+                type="text"
+            />
+            <Button :type="submit" :buttonType="'primary'">Cambiar contraseña</Button>
         </form>
         <Loader v-if="loading" :message="'Cambiando contraseña'"/>
     </section>
