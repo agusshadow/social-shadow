@@ -44,7 +44,7 @@ export default {
         <div class="flex justify-between items-center">
           <img @click="goToHome()" src="../../public/logo-nuevo.svg" alt="logo" class="w-6 cursor-pointer">
           <div v-if="authUser.id" @click="goToProfile()" class="cursor-pointer">
-            <Avatar :src="''" :alt="authUser.username" :width="6" :height="6"/>
+            <Avatar :src="'../../public/logo-cara-1.jpeg'" :alt="authUser.username" :width="10" :height="10"/>
           </div>
         </div>
     </div>

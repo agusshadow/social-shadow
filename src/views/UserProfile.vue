@@ -74,14 +74,14 @@ export default {
 
 <template>
     <section>
-        <div  v-if="!loading" class="flex flex-col items-center justify-center gap-8 p-6 md:p-10">
-          <div class="flex flex-col items-center gap-4">
-            <Avatar :src="''" :alt="user.name" :width="10" :height="10"/>
+        <div  v-if="!loading" class="flex flex-col items-center justify-center gap-8">
+          <div class="flex flex-col items-center gap-4 mt-6">
+            <Avatar :src="'../../public/logo-cara-1.jpeg'" :alt="user.name" :width="24" :height="24"/>
             <div class="grid gap-1 text-center">
               <h2 class="text-2xl font-bold">{{ user.username }}</h2>
               <p class="text-gray-500 dark:text-gray-400">{{ user.email }}</p>
               <p class="text-sm text-gray-500 dark:text-gray-400">Unido {{ formatDate(user.creationTime) }}</p>
-              <p className="text-gray-500 dark:text-gray-400 mt-6">
+              <p className="text-gray-500 dark:text-gray-400 mt-6 mx-4">
                 This is your personal profile page. Here you can manage your account settings, update your password, and log
                 out of your session.
               </p>

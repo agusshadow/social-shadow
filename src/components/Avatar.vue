@@ -8,9 +8,10 @@ export default {
     props: { src: String, alt: String, width: Number, height: Number },
     computed: {
     computedClasses() {
-      const widthClass = `w-${this.width}`;
-      const heightClass = `h-${this.height}`;
-      return `${widthClass} ${heightClass}`;
+        const widthClass = `w-${this.width}`;
+        const heightClass = `h-${this.height}`;
+        const classes = `${widthClass} ${heightClass}`;
+        return classes;
     }
   }
 }
@@ -30,7 +31,7 @@ export default {
         <BIconPersonCircle 
             v-else
             :class="computedClasses"
-            class="rounded-full text-gray-500">
+            class="text-gray-500">
         </BIconPersonCircle>
     </div>
     

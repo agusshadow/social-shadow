@@ -4,14 +4,14 @@ import Like from './Like.vue';
 import Avatar from './Avatar.vue'
 import { BIconChatSquare } from "bootstrap-icons-vue";
 import { subscribeToCommentsByPostId } from '../services/comment.js';
-import { formatDateUtil } from '../utils/formatDate.js'
+import { formatDateUtil } from '../utils/formatDate.js';
 
 export default {
     name: 'Post',
     components: {
         BIconChatSquare,
         Like,
-        Avatar
+        Avatar,
     },
     props: {
         post: Object
@@ -66,7 +66,7 @@ export default {
     <div className="rounded-lg m-4">
         <div className="flex items-start">
           <div className="mr-3">
-            <Avatar :src="''" :alt="post.post_by?.username" :width="6" :height="6"/>
+            <Avatar :src="'../../public/logo-cara-1.jpeg'" :alt="post.post_by?.username" :width="8" :height="8"/>
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between">
