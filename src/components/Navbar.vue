@@ -42,7 +42,7 @@ export default {
 
     <div class="bg-slate-50 fixed top-0 w-full py-5 px-3 z-10">
         <div class="flex justify-between items-center">
-          <img @click="goToHome()" src="../../public/logo-nuevo.svg" alt="" class="w-8 cursor-pointer">
+          <img @click="goToHome()" src="../../public/logo-nuevo.svg" alt="logo" class="w-6 cursor-pointer">
           <div v-if="authUser.id" @click="goToProfile()" class="cursor-pointer">
             <Avatar :src="''" :alt="authUser.username" :width="6" :height="6"/>
           </div>
