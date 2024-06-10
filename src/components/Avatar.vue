@@ -30,7 +30,7 @@ export default {
         <BIconPersonCircle 
             v-else
             :class="computedClasses"
-            class="w-8 rounded-full text-gray-500">
+            class="rounded-full text-gray-500">
         </BIconPersonCircle>
     </div>
     
