@@ -26,7 +26,6 @@ export default {
     methods: {
         handleLike() {
             this.like = !this.like;
-            console.log(this.post);
         },
         handleDoubleClick() {
             this.like = true;
@@ -41,11 +40,10 @@ export default {
                 this.commentCount = count;
             });
         },
-        formatDate(date) {
+        handleFormatDate(date) {
             return formatDateUtil(date);
         },
         goToProfile(userId) {
-            console.log('anashe', userId);
             this.$router.push({
               path: `/perfil/${userId}`
           });
@@ -66,14 +64,13 @@ export default {
     <div className="rounded-lg m-4">
         <div className="flex items-start">
           <div className="mr-3">
-            <!-- <Avatar :src="post.post_by?.photoURL" :alt="post.post_by?.username" :width="8" :height="8"/> -->
-            <img :src="post.post_by?.photoURL" class="w-8 h-8 rounded-full">
+            <Avatar :src="post.post_by?.photoURL" :alt="post.post_by?.username" :size="8"/>
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between">
               <div className="space-x-2">
-                <span className="font-semibold">{{ post.post_by?.username }}</span>
-                <span className="text-gray-500 dark:text-gray-400 text-sm">{{ formatDate(post?.created_at) }}</span>
+                <span className="font-semibold" @click="goToProfile(post.post_by?.id)">{{ post.post_by?.username }}</span>
+                <span className="text-gray-500 dark:text-gray-400 text-sm">{{ handleFormatDate(post?.created_at) }}</span>
               </div>
             </div>
             <div className="prose prose-sm dark:prose-invert mt-4">

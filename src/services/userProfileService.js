@@ -25,7 +25,6 @@ export const createUserProfile = async (id, data) => {
 
     try {
         await setDoc(userRef, data);
-        console.log('User profile created successfully');
     } catch (error) {
         console.error('[user-profile.js createUserProfile] Error al crear el perfil del usuario. ', error);
         throw error;

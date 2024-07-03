@@ -20,8 +20,7 @@ export default {
     
     <div class="p-3">
         <div class="flex gap-2 mb-2 align-bottom items-stretch">
-            <!-- <Avatar :src="''" :alt="comment.comment_by.username" :width="6" :height="6"/> -->
-            <img :src="comment.comment_by.photoURL" class="w-6 h-6 rounded-full">
+            <Avatar :src="comment.comment_by.photoURL" :alt="comment.comment_by.username" :size="6"/>
             <a class="font-bold text-lg" href="">{{ comment.comment_by.username }}</a>
         </div>
         <p class="break-words text-slate-600">{{ comment.content }}</p>

@@ -7,9 +7,7 @@ import Avatar from '../common/Avatar.vue'
 import Button from '../common/Button.vue'
 import { subscribeToAuth, logout } from '../services/authService.js'
 import { subscribeToPostsByUserId } from '../services/postService.js'
-import { formatDateUtil } from '../utils/formatDate.js'
 import { getUserProfileById } from '../services/userProfileService.js'
-import { RouterView } from 'vue-router'
 
 export default {
     name: 'UserProfile',
@@ -48,7 +46,7 @@ export default {
             path: `/perfil/${this.$route.params.userId}/editar`
           });
         },
-        formatDate(date) {
+        handleFormatDate(date) {
             return formatDateUtil(date);
         },
         havePosts() {
@@ -62,7 +60,6 @@ export default {
         this.loading = true;
         this.unsubscribeFromAuth = subscribeToAuth(newUserData => {
           this.authUser = newUserData
-          console.log(newUserData);
         });
         this.user = await getUserProfileById(this.$route.params.userId);
         this.unsubscribeFromPosts = subscribeToPostsByUserId(this.$route.params.userId, newPosts => {
@@ -82,19 +79,13 @@ export default {
     <section>
         <div  v-if="!loading" class="flex flex-col items-center justify-center gap-8">
           <div class="flex flex-col items-center gap-4 mt-6">
-            <!-- <Avatar :src="user.photoURL" :alt="user.name" :width="24" :height="24"/> -->
-            <img :src="authUser.photoURL" class="w-10 h-10 rounded-full">
+            <Avatar :src="user.photoURL" :alt="user.name" :size="12"/>
             <div class="grid gap-1 text-center">
               <h2 class="text-2xl font-bold">{{ user.username }}</h2>
               <p class="text-gray-500 dark:text-gray-400">{{ user.email }}</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Unido {{ formatDate(user.creationTime) }}</p>
-              <p className="text-gray-500 dark:text-gray-400 mt-6 mx-4">
-                This is your personal profile page. Here you can manage your account settings, update your password, and log
-                out of your session.
-              </p>
             </div>
           </div>
-          <div class="w-full max-w-md space-y-6">
+          <div class="w-full max-w-md space-y-6" v-if="isAuthUser()">
             <div class="grid gap-4">
               <div class="flex items-center justify-center gap-2">
                 <Button @click="handleEditProfile()" :type="submit" :buttonType="'secondary'">Editar perfil</Button>

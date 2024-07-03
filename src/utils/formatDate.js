@@ -1,6 +1,9 @@
 export const formatDateUtil = (dateString) => {
-    const fecha = new Date(dateString);
-
+    const timestamp = Date.parse(dateString);
+    if (isNaN(timestamp)) {
+        return 'Fecha inválida';
+    }
+    const fecha = new Date(timestamp);
     return fecha.toLocaleString('es-ES', {
         day: '2-digit',
         month: '2-digit',

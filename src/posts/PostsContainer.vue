@@ -32,7 +32,6 @@ export default {
         this.unsubscribeFromAuth = subscribeToAuth(newUserData => this.authUser = newUserData);
         this.unsubscribeFromPosts = subscribeToPosts(newPosts => {
             this.posts = newPosts;
-            console.log(newPosts);
             this.loadingPosts = false;
         });
     },

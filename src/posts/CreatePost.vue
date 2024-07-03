@@ -27,7 +27,6 @@ export default {
       async handleSubmit() {
         if (!this.postContent) return
         this.loading = true;
-        console.log(this.authUser);
         await createPost({
                 content: this.postContent,
                 image: this.image,
