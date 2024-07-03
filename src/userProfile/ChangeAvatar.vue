@@ -59,24 +59,23 @@ export default {
         action="#"
         @submit.prevent="handleUpload"
     >
-        <div class="flex gap-4 mb-3">
-            <div class="w-1/2">
-                <MainLabel for="photoURL">Foto</MainLabel>
+        <div>
+            <div>
+                <label for="photoURL">Avatar</label>
                 <input
                     type="file"
-                    class="w-full p-2 border border-gray-500 rounded read-only:bg-gray-200"
+                    class="block w-full text-sm p-3 my-3 text-white rounded-lg cursor-pointer bg-gray-400 focus:outline-none"
                     id="photoURL"
                     :read-only="loading"
                     @change="handleFileSelection"
                 />
             </div>
-            <div class="w-1/2">
+            <div class="my-3" v-if="photoPreview">
                 <p class="mb-3">Previsualización</p>
                 <img
-                    v-if="photoPreview"
                     :src="photoPreview"
                     alt=""
-                    class="max-w-full"
+                    class="w-1/2 mx-auto"
                 />
             </div>
         </div>

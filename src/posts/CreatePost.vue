@@ -83,11 +83,12 @@ export default {
           <textarea v-model="this.postContent" type="text" id="content" class="w-full h-96 p-3 mt-4 border-2 border-gray-300 rounded-md focus:outline-none focus:border-purple-700 resize-none"/>
           <input
               type="file"
-              class="w-full p-2 border border-gray-500 rounded read-only:bg-gray-200"
+              class="block w-full text-sm p-3 my-3 text-white rounded-lg cursor-pointer bg-gray-400 focus:outline-none"
               id="photoURL"
               :read-only="loading"
               @change="handleFileSelection"
           />
+          
           <Button :type="submit" :buttonType="'primary'">Crear publicacion</Button>
         </form>
       </div>
