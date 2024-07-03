@@ -1,9 +1,9 @@
 <script>
 
-import Post from '../components/Post.vue'
-import Loader from '../components/Loader.vue'
-import { subscribeToAuth } from '../services/auth.js'
-import { subscribeToPosts } from '../services/post';
+import Post from '../common/Post.vue'
+import Loader from '../common/Loader.vue'
+import { subscribeToAuth } from '../services/authService.js'
+import { subscribeToPosts } from '../services/postService.js';
 
 export default {
     name: 'PostsContainer',
@@ -32,6 +32,7 @@ export default {
         this.unsubscribeFromAuth = subscribeToAuth(newUserData => this.authUser = newUserData);
         this.unsubscribeFromPosts = subscribeToPosts(newPosts => {
             this.posts = newPosts;
+            console.log(newPosts);
             this.loadingPosts = false;
         });
     },

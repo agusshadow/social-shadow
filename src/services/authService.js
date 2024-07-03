@@ -1,6 +1,8 @@
-import { auth } from "./firebase.js";
+import { auth } from "../firebase/firebase.js";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, EmailAuthProvider, reauthenticateWithCredential,updatePassword } from 'firebase/auth';
-import { createUserProfile } from './user-profile.js';
+import { createUserProfile, updateUserProfile } from './userProfileService.js';
+import { uploadFile } from './fileStorageService.js.js';
+import { getFileExtension } from '../utils/getFileExtension.js'
 
 let observers = [];
 
@@ -8,10 +10,15 @@ const AUTH_EMPTY_STATE = {
     id: null,
     email: null,
     username: null,
-    creationTime: null
+    creationTime: null,
+    photoURL: null,
 };
 
 let authUser = AUTH_EMPTY_STATE;
+
+if(localStorage.getItem('user')) {
+    authUser = JSON.parse(localStorage.getItem('user'));
+}
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -22,7 +29,8 @@ onAuthStateChanged(auth, async (user) => {
             id: user.uid,
             email: user.email,
             username: user.displayName,
-            creationTime: user.metadata.creationTime
+            creationTime: user.metadata.creationTime,
+            photoURL: user.photoURL,
         };
         await saveUserInLocalStorage(authUser);
     } else {
@@ -60,7 +68,8 @@ export const createUser = async (email, password, displayName) => {
             id: updatedUser.uid,
             email: updatedUser.email,
             username: updatedUser.displayName,
-            creationTime: updatedUser.metadata.creationTime
+            creationTime: updatedUser.metadata.creationTime,
+            photoURL: updatedUser.photoURL,
         };
         await saveUserInLocalStorage(authUser);
         notifyAll();
@@ -109,6 +118,40 @@ export const changePassword = async (oldPassword, newPassword) => {
         throw error;
     }
 }
+
+export const updateUserPhoto = async (photo) => {
+    if(!photo) return;
+
+    try {
+        // Subimos la foto y buscamos obtener la ruta absoluta donde quedó almacenada.
+        const photoURL = await uploadFile(`users/${authUser.id}/avatar.${getFileExtension(photo)}`, photo);
+
+        // Actualizamos Auth.
+        const authPromise = updateProfile(auth.currentUser, { photoURL });
+
+        // Actualizamos el perfil en Firestore.
+        const profilePromise = updateUserProfile(authUser.id, { photoURL });
+
+        await Promise.all([authPromise, profilePromise]);
+
+        updateUserData({
+            photoURL
+        });
+    } catch (error) {
+        console.error('[auth.js updateUserPhoto] Error al tratar de actualizar la foto de perfil: ', error);
+        throw error;
+    }
+}
+
+export const updateUserData = (data) => {
+    authUser = {
+        ...authUser,
+        ...data,
+    }
+    localStorage.setItem('user', JSON.stringify(authUser));
+    notifyAll();
+}
+
 
 export const subscribeToAuth = (callback) => {
     observers.push(callback);

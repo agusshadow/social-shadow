@@ -1,10 +1,10 @@
 <script>
 
-import Loader from '../components/Loader.vue';
-import GoBack from '../components/GoBack.vue'
-import Button from '../components/Button.vue';
-import { subscribeToAuth } from '../services/auth.js'  
-import { createPost } from '../services/post.js'
+import Loader from '../common/Loader.vue';
+import GoBack from '../common/GoBack.vue'
+import Button from '../common/Button.vue';
+import { subscribeToAuth } from '../services/authService.js'  
+import { createPost } from '../services/postService.js'
 
 export default {
     name: 'CreatePost',
@@ -15,9 +15,11 @@ export default {
             id: null,
             email: null,
             username: null,
+            photoURL: null
         },
         loading: false,
         postContent: '',
+        image: null,
         unsubscribeFromAuth: () => {},
       }
     },
@@ -25,16 +27,26 @@ export default {
       async handleSubmit() {
         if (!this.postContent) return
         this.loading = true;
+        console.log(this.authUser);
         await createPost({
                 content: this.postContent,
+                image: this.image,
                 post_by: {
                   id: this.authUser.id,
                   email: this.authUser.email,
                   username: this.authUser.username,
+                  photoURL: this.authUser.photoURL
                 },
             })
         this.loading = false;
         this.goToRegister();
+      },
+      handleFileSelection(event) {
+            this.image = event.target.files[0];
+
+            const reader = new FileReader();
+
+            reader.readAsDataURL(this.image);
       },
       goToRegister() {
         this.$router.push({
@@ -68,6 +80,13 @@ export default {
             Escribe el contenido de tu publicacion
           </label>
           <textarea v-model="this.postContent" type="text" id="content" class="w-full h-96 p-3 mt-4 border-2 border-gray-300 rounded-md focus:outline-none focus:border-purple-700 resize-none"/>
+          <input
+              type="file"
+              class="w-full p-2 border border-gray-500 rounded read-only:bg-gray-200"
+              id="photoURL"
+              :read-only="loading"
+              @change="handleFileSelection"
+          />
           <Button :type="submit" :buttonType="'primary'">Crear publicacion</Button>
         </form>
       </div>

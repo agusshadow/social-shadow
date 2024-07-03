@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { subscribeToAuth, logout } from './services/auth.js'
-import Register from './views/Register.vue'
-import Login from './views/Login.vue'
-import Home from './views/Home.vue'
-import CommentContainer from './views/CommentContainer.vue'
-import CreatePost from './views/CreatePost.vue'
-import UserProfile from './views/UserProfile.vue'
-import ChangePassword from './views/ChangePassword.vue'
+import { subscribeToAuth, logout } from '../services/authService.js'
+import Register from '../auth/Register.vue'
+import Login from '../auth/Login.vue'
+import Home from '../home/Home.vue'
+import CommentContainer from '../comments/CommentContainer.vue'
+import CreatePost from '../posts/CreatePost.vue'
+import UserProfile from '../userProfile/UserProfile.vue'
+import ChangePassword from '../userProfile/ChangePassword.vue'
+import EditProfile from '../userProfile/EditProfile.vue'
+import ChangeAvatar from '../userProfile/ChangeAvatar.vue'
 
 const routes = [
   {
@@ -48,9 +50,21 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/cambiar-contraseña',
+    path: '/perfil/:userId/editar',
+    name: 'EditProfile',
+    component: EditProfile,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/perfil/:userId/cambiar-contraseña',
     name: 'ChangePassword',
     component: ChangePassword,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/perfil/:userId/cambiar-avatar',
+    name: 'ChangeAvatar',
+    component: ChangeAvatar,
     meta: { requiresAuth: true }
   },
 ];

@@ -1,7 +1,7 @@
 <script>
 
 import Avatar from './Avatar.vue';
-import { subscribeToAuth } from '../services/auth';
+import { subscribeToAuth } from '../services/authService';
 
 export default {
     name: 'Navbar',
@@ -11,7 +11,8 @@ export default {
             authUser: {
                 id: null,
                 email: null,
-                username: null
+                username: null,
+                photoURL: null,
             },
             unsubscribeFromAuth: () => {},
         };
@@ -42,9 +43,10 @@ export default {
 
     <div class="bg-slate-50 fixed top-0 w-full py-5 px-3 z-10">
         <div class="flex justify-between items-center">
-          <img @click="goToHome()" src="../../public/logo-nuevo.svg" alt="logo" class="w-6 cursor-pointer">
+          <img @click="goToHome()" src="../assets/logo.svg" alt="logo" class="w-12 cursor-pointer">
           <div v-if="authUser.id" @click="goToProfile()" class="cursor-pointer">
-            <Avatar :src="'../../public/logo-cara-1.jpeg'" :alt="authUser.username" :width="10" :height="10"/>
+            <!-- <Avatar :src="authUser.photoUrl" :alt="authUser.username" :width="10" :height="10"/> -->
+            <img :src="authUser.photoURL" class="w-10 h-10 rounded-full">
           </div>
         </div>
     </div>

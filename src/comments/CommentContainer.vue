@@ -1,10 +1,10 @@
 <script>
 
-import CreateComment from '../components/CreateComment.vue';
-import Comment from '../components/Comment.vue';
-import Loader from '../components/Loader.vue';
-import GoBack from '../components/GoBack.vue'
-import { subscribeToComments } from '../services/comment.js'
+import CreateComment from '../comments/CreateComment.vue';
+import Comment from '../comments/Comment.vue';
+import Loader from '../common/Loader.vue';
+import GoBack from '../common/GoBack.vue'
+import { subscribeToComments } from '../services/commentService.js'
 
 
 export default {

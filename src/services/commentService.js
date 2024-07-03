@@ -1,5 +1,5 @@
 import { addDoc, collection, serverTimestamp, query, orderBy, where, onSnapshot } from "firebase/firestore";
-import { db } from "./firebase";
+import { db } from "../firebase/firebase";
 
 export const createComment = async (data) => {
     const refChat = collection(db, 'comments');
@@ -28,6 +28,7 @@ export const subscribeToComments = (postId, callback) => {
                     id: doc.data().comment_by.id,
                     email: doc.data().comment_by.email,
                     username: doc.data().comment_by.username,
+                    photoURL: doc.data().comment_by.photoURL
                 },
                 content: doc.data().content,
                 created_at: doc.data().created_at?.toDate(),

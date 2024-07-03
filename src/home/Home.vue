@@ -1,8 +1,8 @@
 <script>
 
-import Post from '../components/Post.vue'
-import CreatePostButton from '../components/CreatePostButton.vue'
-import PostsContainer from './PostsContainer.vue'
+import Post from '../common/Post.vue'
+import CreatePostButton from '../posts/CreatePostButton.vue'
+import PostsContainer from '../posts/PostsContainer.vue'
 
 export default {
     name: 'Home',

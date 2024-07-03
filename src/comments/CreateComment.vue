@@ -1,12 +1,12 @@
 <script>
 
-import Comment from './Comment.vue';
-import Loader from './Loader.vue';
-import GoBack from './GoBack.vue'
-import Button from './Button.vue';
-import Input from './Input.vue';
-import { createComment } from '../services/comment.js'
-import { subscribeToAuth } from '../services/auth.js'
+import Comment from '../comments/Comment.vue';
+import Loader from '../common/Loader.vue';
+import GoBack from '../common/GoBack.vue'
+import Button from '../common/Button.vue';
+import Input from '../common/Input.vue';
+import { createComment } from '../services/commentService.js'
+import { subscribeToAuth } from '../services/authService.js'
 
 export default {
     name: 'CreateComment',
@@ -18,6 +18,7 @@ export default {
             id: null,
             email: null,
             username: null,
+            photoURL: null
         },
         loading: false,
         commentContent: '',
@@ -34,7 +35,8 @@ export default {
                 comment_by: {
                     id: this.authUser.id,
                     email: this.authUser.email,
-                    username: this.authUser.username
+                    username: this.authUser.username,
+                    photoURL: this.authUser.photoURL
                 }
             })
             this.clearInputContent();

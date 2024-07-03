@@ -1,9 +1,9 @@
 <script>
 
-import Loader from '../components/Loader.vue'
-import Input from '../components/Input.vue'
-import Button from '../components/Button.vue'
-import { login } from "../services/auth.js";
+import Loader from '../common/Loader.vue'
+import Input from '../common/Input.vue'
+import Button from '../common/Button.vue'
+import { login } from "../services/authService.js";
   
 export default {
     name: 'Login',
@@ -50,7 +50,7 @@ export default {
 <template>
 
   <div class="flex justify-center pt-16">
-    <img src="../../public/logo-nuevo.svg" alt="" class="w-20">
+    <img src="../assets/logo.svg" alt="" class="w-20">
   </div>
   <div class="flex items-center justify-center">
     <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full max-w-sm p-6 rounded-lg': true}">

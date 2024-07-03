@@ -1,10 +1,10 @@
 <script>
 
-import Loader from '../components/Loader.vue'
-import GoBack from '../components/GoBack.vue'
-import Input from '../components/Input.vue';
-import Button from '../components/Button.vue';
-import { subscribeToAuth, changePassword } from '../services/auth.js'
+import Loader from '../common/Loader.vue'
+import GoBack from '../common/GoBack.vue'
+import Input from '../common/Input.vue';
+import Button from '../common/Button.vue';
+import { subscribeToAuth, changePassword } from '../services/authService.js'
 
 export default {
     name: 'ChangePassword',

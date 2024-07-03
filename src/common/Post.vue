@@ -3,7 +3,7 @@
 import Like from './Like.vue';
 import Avatar from './Avatar.vue'
 import { BIconChatSquare } from "bootstrap-icons-vue";
-import { subscribeToCommentsByPostId } from '../services/comment.js';
+import { subscribeToCommentsByPostId } from '../services/commentService.js';
 import { formatDateUtil } from '../utils/formatDate.js';
 
 export default {
@@ -66,7 +66,8 @@ export default {
     <div className="rounded-lg m-4">
         <div className="flex items-start">
           <div className="mr-3">
-            <Avatar :src="'../../public/logo-cara-1.jpeg'" :alt="post.post_by?.username" :width="8" :height="8"/>
+            <!-- <Avatar :src="post.post_by?.photoURL" :alt="post.post_by?.username" :width="8" :height="8"/> -->
+            <img :src="post.post_by?.photoURL" class="w-8 h-8 rounded-full">
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between">
@@ -82,11 +83,12 @@ export default {
             </div>
             <div>
                 <img
-                  src="https://placehold.co/600x400"
-                  width={800}
-                  height={450}
-                  alt="Post Image"
-                  className="mt-4 rounded-lg w-full object-cover aspect-[16/9]"
+                    v-if="post.image"
+                    :src="post.image"
+                    width={800}
+                    height={450}
+                    alt="Post Image"
+                    className="mt-4 rounded-lg w-full object-cover aspect-[16/9]"
                 />
                 <div class="mt-3 flex gap-3">
                     <div class="flex gap-1 items-center cursor-pointer">

@@ -1,11 +1,21 @@
 import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy, where } from "firebase/firestore";
-import { db } from "./firebase";
+import { db } from "../firebase/firebase.js";
+import { uploadFile } from "./fileStorageService.js.js";
+import { getFileExtension } from "../utils/getFileExtension.js";
+import { generateRandomString } from "../utils/generateRandomString.js";
 
 export const createPost = async (data) => {
     const refChat = collection(db, 'posts');
 
+    let imageURL = '';
+
+    if (data.image) {
+        imageURL = await uploadFile(`users/${data.post_by.id}/images/${generateRandomString(30)}.${getFileExtension(data.image)}`, data.image);
+    }
+
     const doc = await addDoc(refChat, {
         ...data,
+        image: imageURL,
         created_at: serverTimestamp(),
     });
 
@@ -28,9 +38,10 @@ export const subscribeToPosts = (callback) => {
                     id: doc.data().post_by.id,
                     email: doc.data().post_by.email,
                     username: doc.data().post_by.username,
+                    photoURL: doc.data().post_by.photoURL
                 },
                 content: doc.data().content,
-                image: doc.data().img,
+                image: doc.data().image,
                 created_at: doc.data().created_at?.toDate(),
             }
         });
@@ -52,9 +63,10 @@ export const subscribeToPostsByUserId = (userId, callback) => {
                     id: doc.data().post_by.id,
                     email: doc.data().post_by.email,
                     username: doc.data().post_by.username,
+                    photoURL: doc.data().post_by.photoURL
                 },
                 content: doc.data().content,
-                image: doc.data().img,
+                image: doc.data().image,
                 created_at: doc.data().created_at?.toDate(),
             }
         });

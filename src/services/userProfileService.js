@@ -1,5 +1,5 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 export const getUserProfileById = async (id) => {
     const userRef = doc(db, `users/${id}`);
@@ -11,7 +11,8 @@ export const getUserProfileById = async (id) => {
             id: userDoc.id,
             email: userDoc.data().email,
             username: userDoc.data().username,
-            creationTime: userDoc.data().creationTime,
+            username: userDoc.data().username,
+            photoURL: userDoc.data().photoURL,
         };
     } catch (error) {
         console.error('[user-profile.js getUserProfileById] Error al traer el perfil del usuario. ', error);
@@ -29,4 +30,10 @@ export const createUserProfile = async (id, data) => {
         console.error('[user-profile.js createUserProfile] Error al crear el perfil del usuario. ', error);
         throw error;
     }
+}
+
+export async function updateUserProfile(id, data) {
+    const userRef = doc(db, `users/${id}`);
+
+    return updateDoc(userRef, {...data});
 }
