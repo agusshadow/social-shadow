@@ -70,8 +70,10 @@ export default {
   <section>
     <div v-if="!loading">
       <GoBack></GoBack>
-      <h2>Crea una nueva publicacion</h2>
-      <p>Escribe el contenido de tu publicacion y luego da click en crear</p>
+      <div class="px-6">
+        <h2 class="font-bold">Crea una nueva publicacion</h2>
+        <p>Escribe el contenido de tu publicacion y luego da click en crear</p>
+      </div>
       <div class="flex items-center justify-center">
         
         <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full px-6 rounded-lg': true}">
