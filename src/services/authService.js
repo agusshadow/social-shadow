@@ -123,13 +123,8 @@ export const updateUserPhoto = async (photo) => {
     if(!photo) return;
 
     try {
-        // Subimos la foto y buscamos obtener la ruta absoluta donde quedó almacenada.
         const photoURL = await uploadFile(`users/${authUser.id}/avatar.${getFileExtension(photo)}`, photo);
-
-        // Actualizamos Auth.
         const authPromise = updateProfile(auth.currentUser, { photoURL });
-
-        // Actualizamos el perfil en Firestore.
         const profilePromise = updateUserProfile(authUser.id, { photoURL });
 
         await Promise.all([authPromise, profilePromise]);
