@@ -70,8 +70,8 @@ export default {
   <section>
     <div v-if="!loading">
       <GoBack></GoBack>
-      <div class="px-6">
-        <h2 class="font-bold">Crea una nueva publicación</h2>
+      <div class="px-6 text-center">
+        <h2 class="font-bold text-3xl text-center my-8 text-purple-900">Crea una nueva publicación</h2>
         <p>Escribe el contenido de tu publicación y luego da clic en crear</p>
       </div>
       <div class="flex items-center justify-center">

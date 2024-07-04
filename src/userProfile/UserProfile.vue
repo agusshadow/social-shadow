@@ -77,6 +77,7 @@ export default {
 
 <template>
     <section>
+      <h2 class="font-bold text-3xl text-center my-8 text-purple-900">Perfil de usuario</h2>
         <div  v-if="!loading" class="flex flex-col items-center justify-center gap-8">
           <div class="flex flex-col items-center gap-4 mt-6">
             <Avatar :src="user.photoURL" :alt="user.name" :size="12"/>

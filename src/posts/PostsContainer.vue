@@ -45,6 +45,7 @@ export default {
 
 <template>
 
+    <h2 class="font-bold text-3xl text-center my-8 text-purple-900">Publicaciones</h2>
     <div v-if="havePosts()">
         <div v-for="post in posts">
             <Post :post="post" :key="post.id"></Post>

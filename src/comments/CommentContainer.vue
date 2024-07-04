@@ -41,6 +41,7 @@ export default {
     <section>
         <div v-if="!loading">
             <GoBack></GoBack>
+            <h2 class="font-bold text-3xl text-center my-8 text-purple-900">Comentarios</h2>
             <div v-if="haveComments()">
                 <ul class="mb-20">
                     <li v-for="comment in comments" :key="comment.id">

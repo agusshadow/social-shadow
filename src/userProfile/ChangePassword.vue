@@ -38,6 +38,7 @@ export default {
 <template>
 
     <GoBack></GoBack>
+    <h2 class="font-bold text-3xl text-center my-8 text-purple-900">Cambiar contraseña</h2>
     <section class="flex items-center justify-center pt-32">
         <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full max-w-sm p-6 rounded-lg': true}">
             <Input 
