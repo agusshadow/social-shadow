@@ -51,7 +51,7 @@ export default {
         </div>
     </div>
     <div v-else>
-        <p class="mt-10 text-center text-slate-500">no hay publicaciones</p>
+        <p class="mt-10 text-center text-slate-500">No hay publicaciones</p>
     </div>
     <Loader v-if="loadingPosts" :message="'Cargando publicaciones'"/>
     

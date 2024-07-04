@@ -89,7 +89,7 @@ export default {
             <div class="grid gap-4">
               <div class="flex items-center justify-center gap-2">
                 <Button @click="handleEditProfile()" :type="submit" :buttonType="'secondary'">Editar perfil</Button>
-                <Button @click="handleLogout()" :type="submit" :buttonType="'primary'">Cerrar sesion</Button>
+                <Button @click="handleLogout()" :type="submit" :buttonType="'primary'">Cerrar sesión</Button>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default {
             </div>
           </div>
           <div v-else>
-              <p class="mt-10 text-center text-slate-500">el usuario no ha creado publicaciones</p>
+              <p class="mt-10 text-center text-slate-500">El usuario no ha creado publicaciones</p>
           </div>
         </div>
         <Loader v-else :message="'Cargando perfil'"/>

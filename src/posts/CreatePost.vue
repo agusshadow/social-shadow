@@ -71,14 +71,14 @@ export default {
     <div v-if="!loading">
       <GoBack></GoBack>
       <div class="px-6">
-        <h2 class="font-bold">Crea una nueva publicacion</h2>
-        <p>Escribe el contenido de tu publicacion y luego da click en crear</p>
+        <h2 class="font-bold">Crea una nueva publicación</h2>
+        <p>Escribe el contenido de tu publicación y luego da clic en crear</p>
       </div>
       <div class="flex items-center justify-center">
         
         <form @submit.prevent="handleSubmit()" :class="{'opacity-20': loading, 'w-full px-6 rounded-lg': true}">
           <label class="block mb-2 sr-only" for="content">
-            Escribe el contenido de tu publicacion
+            Escribe el contenido de tu publicación
           </label>
           <textarea v-model="this.postContent" type="text" id="content" class="w-full h-96 p-3 mt-4 border-2 border-gray-300 rounded-md focus:outline-none focus:border-purple-700 resize-none"/>
           <input
@@ -89,11 +89,11 @@ export default {
               @change="handleFileSelection"
           />
           
-          <Button :type="submit" :buttonType="'primary'">Crear publicacion</Button>
+          <Button :type="submit" :buttonType="'primary'">Crear publicación</Button>
         </form>
       </div>
     </div>
-    <Loader v-else :message="'Creando publicacion'"/>
+    <Loader v-else :message="'Creando publicación'"/>
   </section>
 
 </template>  

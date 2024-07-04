@@ -73,10 +73,10 @@ export default {
         label="Contraseña"
         type="password"
       />
-      <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales invalidas</p>
+      <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales inválidas</p>
       <Button :type="submit" :buttonType="'primary'">Crear cuenta</Button>
       <div class="text-center mt-5">
-        <p>Ya tenes una cuenta? <span @click="goToLogin()" class="text-purple-700 font-bold cursor-pointer">Iniciar sesion</span></p>
+        <p>¿Ya tenés una cuenta?  <span @click="goToLogin()" class="text-purple-700 font-bold cursor-pointer">Iniciar sesión</span></p>
       </div>
     </form>
     <Loader v-if="loading" :message="'Creando cuenta'"/>

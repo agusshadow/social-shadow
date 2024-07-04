@@ -64,13 +64,13 @@ export default {
         label="Contraseña"
         type="password"
       />
-      <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales invalidas</p>
-      <Button :type="submit" :buttonType="'primary'">Iniciar sesion</Button>
+      <p class="text-red-500 text-sm mt-2" v-if="error">Credenciales inválidas</p>
+      <Button :type="submit" :buttonType="'primary'">Iniciar sesión</Button>
       <div class="text-center mt-5">
-      <p>No tenes una cuenta? <span @click="goToRegister()" class="text-purple-700 font-bold cursor-pointer">Crea una</span></p>
+      <p>¿No tenés una cuenta? <span @click="goToRegister()" class="text-purple-700 font-bold cursor-pointer">Crea una</span></p>
       </div>
     </form>
-    <Loader v-if="loading" :message="'Iniciando sesion'"/>
+    <Loader v-if="loading" :message="'Iniciando sesión'"/>
   </div>
 
 </template>  
